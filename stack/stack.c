@@ -52,5 +52,14 @@ int seek(t_stack *stack)
 	return (stack -> elements[stack ->top]);
 }
 
-
+void print_stack(t_stack *stack)
+{
+	printf("[");
+	for(int i = 0; i <= stack -> top; i++) {
+		printf("%d", stack -> elements[i]);
+		if(i != stack -> top)
+			printf(", ");
+	}
+	printf("]\n");
+}
 

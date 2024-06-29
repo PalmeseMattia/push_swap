@@ -8,6 +8,7 @@ TEST(test_create_stack)
 	push(stack, 2);
 	push(stack, 3);
 	push(stack, 4);
+	print_stack(stack);
 
 	ASSERT_NOT_NULL(stack);
 	ASSERT_NOT_NULL(stack -> elements);

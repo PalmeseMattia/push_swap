@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <limits.h>
+#include <stdio.h>
 
 #define BUFFER_SIZE 10
 
@@ -14,10 +15,11 @@ typedef struct s_stack
 }	t_stack;
 
 t_stack	*create_stack(unsigned int n);
-int	is_empty(t_stack *stack);
-int is_full(t_stack *stack);
-void push(t_stack *stack, int n);
-void pop(t_stack *stack);
-int seek(t_stack *stack);
+int		is_empty(t_stack *stack);
+int		is_full(t_stack *stack);
+void	push(t_stack *stack, int n);
+void	pop(t_stack *stack);
+int		seek(t_stack *stack);
+void	print_stack(t_stack *stack);
 
 #endif
