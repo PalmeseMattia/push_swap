@@ -49,6 +49,20 @@ void	ss(t_twostack *twostack)
  * pa (push a): Take the first element at the top of b and put it at the top of a.
  * Do nothing if b is empty.
  */
+void	pa(t_twostack *twostack)
+{
+	int		tmp;
+	t_stack	*a;
+	t_stack	*b;
+
+	a = twostack -> a;
+	b = twostack -> b;
+	if (!is_empty(b) && !is_full(a))
+	{
+		push(a, seek(b));
+		pop(b);
+	}
+}
 
 /*
  * pb (push b): Take the first element at the top of a and put it at the top of b.

@@ -32,3 +32,11 @@ void	free_twostack(t_twostack *twostack)
 		free(twostack);
 	}
 }
+
+void	print_twostack(t_twostack *twostack)
+{
+	printf("Stack A: ");
+	print_stack(twostack -> a);
+	printf("Stack B: ");
+	print_stack(twostack -> b);
+}

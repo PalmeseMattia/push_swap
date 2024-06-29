@@ -113,7 +113,7 @@ void run_tests()
 
 # define ASSERT_NULL(stuff) \
     if (stuff != NULL) { \
-        fprintf(stderr, "Assertion failed: Memory points to null\n"); \
+        fprintf(stderr, "Assertion failed: Memory do not points to null\n"); \
         exit(EXIT_FAILURE); \
     }
 

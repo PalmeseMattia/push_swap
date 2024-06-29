@@ -30,9 +30,12 @@ int			seek(t_stack *stack);
 void		print_stack(t_stack *stack);
 void		free_stack(t_stack *stack);
 void		free_twostack(t_twostack *twostack);
+void		print_twostack(t_twostack *twostack);
 
 // OPERATIONS
 void		sa(t_twostack *twostack);
-void	sb(t_twostack *twostack);
+void		sb(t_twostack *twostack);
+void		ss(t_twostack *twostack);
+void		pa(t_twostack *twostack);
 
 #endif
