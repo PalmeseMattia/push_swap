@@ -22,10 +22,13 @@ typedef struct s_twostack
 
 t_stack		*create_stack(unsigned int n);
 t_twostack	*create_twostack(int capacity);
+
+///STACK OPERATIONS
 int			is_empty(t_stack *stack);
 int			is_full(t_stack *stack);
 void		push(t_stack *stack, int n);
-void		pop(t_stack *stack);
+void 		push_back(t_stack *stack, int n);
+int			pop(t_stack *stack);
 int			seek(t_stack *stack);
 void		print_stack(t_stack *stack);
 void		free_stack(t_stack *stack);
@@ -37,5 +40,7 @@ void		sa(t_twostack *twostack);
 void		sb(t_twostack *twostack);
 void		ss(t_twostack *twostack);
 void		pa(t_twostack *twostack);
+void		pb(t_twostack *twostack);
+void		ra(t_twostack *twostack);
 
 #endif
