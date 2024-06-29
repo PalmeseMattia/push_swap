@@ -2,12 +2,14 @@ SRCS := $(wildcard *.c)
 
 FILES := ../stack.c ../twostack.c
 
+FLAGS := -I../../includes
+
 EXECS := $(SRCS:.c=)
 
 all : $(EXECS)
 
 %: %.c
-	gcc $< $(FILES) -o $@
+	gcc $(FLAGS) $< $(FILES) -o $@
 
 clean:
 	rm -f $(EXECS)
