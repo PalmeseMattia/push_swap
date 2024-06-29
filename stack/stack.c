@@ -39,10 +39,35 @@ void push(t_stack *stack, int n)
 		stack -> elements[++(stack -> top)] = n;
 }
 
-void pop(t_stack *stack)
+void push_back(t_stack *stack, int n)
 {
+	int	i;
+	int	tmp;
+	int prev;
+
+	if(!is_full(stack))
+	{
+		i = stack -> top;
+		while(i >= 0)
+		{
+			stack -> elements[i + 1] = stack -> elements[i];
+			i--;
+		}
+		stack -> elements[0] = n;
+		stack -> top++;
+	}
+}
+
+int	pop(t_stack *stack)
+{
+	int	popped;
+
 	if(!is_empty(stack))
+	{
+		popped = seek(stack);
 		stack -> top--;
+	}
+	return (popped);
 }
 
 int seek(t_stack *stack)

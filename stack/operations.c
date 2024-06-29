@@ -58,21 +58,37 @@ void	pa(t_twostack *twostack)
 	a = twostack -> a;
 	b = twostack -> b;
 	if (!is_empty(b) && !is_full(a))
-	{
-		push(a, seek(b));
-		pop(b);
-	}
+		push(a, pop(b));
 }
 
 /*
  * pb (push b): Take the first element at the top of a and put it at the top of b.
  * Do nothing if a is empty.
  */
+void	pb(t_twostack *twostack)
+{
+	int		tmp;
+	t_stack	*a;
+	t_stack	*b;
+
+	a = twostack -> a;
+	b = twostack -> b;
+	if (!is_empty(a) && !is_full(b))
+		push(b, pop(a));
+}
 
 /*
  * ra (rotate a): Shift up all elements of stack a by 1.
  * The first element becomes the last one.
  */
+void	ra(t_twostack *twostack)
+{
+	t_stack	*a;
+
+	a = twostack -> a;
+	if (!is_empty(a))
+		push_back(a, pop(a));
+}
 
 /*
  * rb (rotate b): Shift up all elements of stack b by 1.

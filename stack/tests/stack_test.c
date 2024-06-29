@@ -26,6 +26,41 @@ TEST(test_create_stack)
 	free_stack(stack);
 }
 
+TEST(test_push_back)
+{
+	t_stack *stack = create_stack(5);
+	push(stack, 1);
+	push(stack, 2);
+	push(stack, 3);
+	push(stack, 4);
+	print_stack(stack);
+
+	push_back(stack, 0);
+	printf("Push back 0:\n");
+	print_stack(stack);
+	ASSERT_EQUAL_INT(0, stack -> elements[0]);
+	ASSERT_EQUAL_INT(4, stack -> top);
+	free_stack(stack);
+}
+
+TEST(test_push_back_full_stack)
+{
+	t_stack *stack = create_stack(2);
+	push(stack, 1);
+	push(stack, 2);
+	push(stack, 3);
+	push(stack, 4);
+	print_stack(stack);
+
+	push_back(stack, 0);
+	printf("Push back 0:\n");
+	print_stack(stack);
+	ASSERT_EQUAL_INT(1, stack -> elements[0]);
+	ASSERT_EQUAL_INT(1, stack -> top);
+	free_stack(stack);
+}
+
+
 TEST(test_create_empty_stack)
 {
 	t_stack *stack = create_stack(0);

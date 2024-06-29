@@ -127,6 +127,74 @@ TEST(test_pa)
 	ASSERT_EQUAL_INT(INT_MIN, seek(twostack -> b));
 }
 
+TEST(test_pb)
+{
+	t_twostack *twostack = create_twostack(6);
+	push(twostack -> a, 1);
+	push(twostack -> a, 2);
+	push(twostack -> a, 3);
+	ASSERT_EQUAL_INT(2, twostack -> a -> top)
+
+	push(twostack -> b, 4);
+	push(twostack -> b, 5);
+	push(twostack -> b, 6);
+
+
+	print_twostack(twostack);
+
+	pb(twostack);
+	printf("\nStacks After PB:\n");
+	print_twostack(twostack);
+	ASSERT_EQUAL_INT(3, seek(twostack -> b));
+
+	pb(twostack);
+	pb(twostack);
+	pb(twostack);
+	pb(twostack);
+	printf("Stacks After Spamming PB:\n");
+	print_twostack(twostack);
+	ASSERT_EQUAL_INT(1, seek(twostack -> b));
+	ASSERT_EQUAL_INT(INT_MIN, seek(twostack -> a));
+}
+
+TEST(test_ra)
+{
+	t_twostack *twostack = create_twostack(3);
+	push(twostack -> a, 1);
+	push(twostack -> a, 2);
+	push(twostack -> a, 3);
+	ASSERT_EQUAL_INT(2, twostack -> a -> top);
+	
+	print_twostack(twostack);
+	ra(twostack);
+	ASSERT_EQUAL_INT(2, twostack -> a -> top);
+	printf("\nStacks After RA:\n");
+	print_twostack(twostack);
+	ASSERT_EQUAL_INT(2, seek(twostack -> a));
+
+	ra(twostack);
+	ra(twostack);
+	ASSERT_EQUAL_INT(2, twostack -> a -> top);
+	printf("Stacks After Spamming RA:\n");
+	print_twostack(twostack);
+}
+
+TEST(test_ra_no_space)
+{
+	t_twostack *twostack = create_twostack(1);
+	push(twostack -> a, 1);
+	push(twostack -> a, 2);
+	push(twostack -> a, 3);
+	ASSERT_EQUAL_INT(0, twostack -> a -> top);
+	
+	print_twostack(twostack);
+	ra(twostack);
+	ASSERT_EQUAL_INT(0, twostack -> a -> top);
+	printf("\nStacks After RA:\n");
+	print_twostack(twostack);
+	ASSERT_EQUAL_INT(1, seek(twostack -> a));
+}
+
 int main()
 {
 	run_tests();
