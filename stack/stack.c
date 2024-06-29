@@ -52,6 +52,14 @@ int seek(t_stack *stack)
 	return (stack -> elements[stack ->top]);
 }
 
+void free_stack(t_stack *stack)
+{
+	if (stack -> elements != NULL)
+		free(stack -> elements);
+	if (stack)
+		free(stack);
+}
+
 void print_stack(t_stack *stack)
 {
 	printf("[");

@@ -14,12 +14,22 @@ typedef struct s_stack
 	int	top;
 }	t_stack;
 
-t_stack	*create_stack(unsigned int n);
-int		is_empty(t_stack *stack);
-int		is_full(t_stack *stack);
-void	push(t_stack *stack, int n);
-void	pop(t_stack *stack);
-int		seek(t_stack *stack);
-void	print_stack(t_stack *stack);
+typedef struct s_twostack
+{
+	t_stack	*a;
+	t_stack *b;
+}	t_twostack;
+
+t_stack		*create_stack(unsigned int n);
+t_twostack	*create_twostack(int capacity);
+int			is_empty(t_stack *stack);
+int			is_full(t_stack *stack);
+void		push(t_stack *stack, int n);
+void		pop(t_stack *stack);
+int			seek(t_stack *stack);
+void		print_stack(t_stack *stack);
+void		free_stack(t_stack *stack);
+void		free_twostack(t_twostack *twostack);
+
 
 #endif

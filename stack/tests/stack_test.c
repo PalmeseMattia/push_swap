@@ -22,6 +22,8 @@ TEST(test_create_stack)
 	
 	pop(stack);
 	ASSERT_EQUAL_INT(INT_MIN, seek(stack));
+	
+	free_stack(stack);
 }
 
 TEST(test_create_empty_stack)

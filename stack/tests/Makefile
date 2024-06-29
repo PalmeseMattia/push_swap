@@ -1,11 +1,13 @@
 SRCS := $(wildcard *.c)
 
+FILES := ../stack.c ../twostack.c
+
 EXECS := $(SRCS:.c=)
 
 all : $(EXECS)
 
 %: %.c
-	gcc $< ../stack.c -o $@
+	gcc $< $(FILES) -o $@
 
 clean:
 	rm -f $(EXECS)
