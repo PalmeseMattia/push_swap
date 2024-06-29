@@ -1,6 +1,6 @@
 SRCS := $(wildcard *.c)
 
-FILES := ../stack.c ../twostack.c
+FILES := ../stack.c ../twostack.c ../operations.c
 
 FLAGS := -I../../includes
 
@@ -15,6 +15,6 @@ clean:
 	rm -f $(EXECS)
 
 run: all
-	@for exec in $(EXECS); do echo "Running $$exec...";./$$exec; done
+	@for exec in $(EXECS); do echo "\033[1mRUNNING $$exec\033[0m";./$$exec; done
 
 .PHONY: all clean run
