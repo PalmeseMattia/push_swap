@@ -10,7 +10,7 @@ void	sa(t_twostack *twostack)
 	t_stack	*a;
 
 	a = twostack -> a;
-	if (a && a -> top > 1)
+	if (a && a -> top > 1) //TODO: i think this is a ge. Write a test for it and fix if needed
 	{
 		tmp = seek(a);
 		a -> elements[a -> top] = a -> elements[a -> top -1];
@@ -28,7 +28,7 @@ void	sb(t_twostack *twostack)
 	t_stack	*b;
 
 	b = twostack -> b;
-	if (b && b -> top > 1)
+	if (b && b -> top > 1) //TODO: i think this is a ge. Write a test for it and fix if needed
 	{
 		tmp = seek(b);
 		b -> elements[b -> top] = b -> elements[b -> top -1];
