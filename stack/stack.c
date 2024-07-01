@@ -42,8 +42,7 @@ void push(t_stack *stack, int n)
 void push_back(t_stack *stack, int n)
 {
 	int	i;
-	int	tmp;
-	int prev;
+	int	prev;
 
 	if(!is_full(stack))
 	{
@@ -58,7 +57,7 @@ void push_back(t_stack *stack, int n)
 	}
 }
 
-int	pop(t_stack *stack)
+int	pop(t_stack *stack) //TODO: fix logic, what if is empty? Garbage is returned :/ Maybe a void pop would be better
 {
 	int	popped;
 
