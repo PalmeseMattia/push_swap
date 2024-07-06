@@ -35,6 +35,22 @@ TEST(test_sa_no_elements)
 	ASSERT_EQUAL_INT(1, seek(twostack -> a));
 }
 
+TEST(test_sa_two_elements)
+{
+	t_twostack *twostack = create_twostack(2);
+	push(twostack -> a, 1);
+	push(twostack -> a, 2);
+
+	printf("Stack Before SA: ");
+	print_stack(twostack -> a);	
+	ASSERT_EQUAL_INT(2, seek(twostack -> a));
+	sa(twostack);
+	
+	printf("Stack After SA: ");
+	print_stack(twostack -> a);	
+	ASSERT_EQUAL_INT(1, seek(twostack -> a));
+}
+
 TEST(test_sb)
 {
 	t_twostack *twostack = create_twostack(3);
