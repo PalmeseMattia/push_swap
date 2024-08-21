@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "../includes/stack.h"
 
 t_twostack	*create_twostack(int capacity)
 {

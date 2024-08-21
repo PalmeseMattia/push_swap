@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "../includes/stack.h"
 
 t_stack	*create_stack(unsigned int n)
 {
