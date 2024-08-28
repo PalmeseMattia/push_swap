@@ -1,4 +1,4 @@
-#include "../includes/stack.h"
+#include "stack.h"
 
 t_stack	*create_stack(unsigned int n)
 {
@@ -42,7 +42,6 @@ void push(t_stack *stack, int n)
 void push_back(t_stack *stack, int n)
 {
 	int	i;
-	int	prev;
 
 	if(!is_full(stack))
 	{
@@ -57,19 +56,15 @@ void push_back(t_stack *stack, int n)
 	}
 }
 
-int	pop(t_stack *stack) //TODO: fix logic, what if is empty? Garbage is returned :/ Maybe a void pop would be better
+void pop(t_stack *stack) //TODO: fix logic, what if is empty? Garbage is returned :/ Maybe a void pop would be better
 {
-	int	popped;
-
 	if(!is_empty(stack))
 	{
-		popped = seek(stack);
 		stack -> top--;
 	}
-	return (popped);
 }
 
-int seek(t_stack *stack)
+int peek(t_stack *stack)
 {
 	if(is_empty(stack))
 		return INT_MIN;

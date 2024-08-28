@@ -1,37 +1,37 @@
 #include "xtal.h"
-#include "stack.h"
+#include "../stack.h"
 
-TEST(test_create_twostack)
+TEST(test_create_stacks)
 {
-	t_twostack *twostack = create_twostack(2);
+	t_stacks *stacks = create_stacks(2);
 	
-	ASSERT_NOT_NULL(twostack);
-	ASSERT_NOT_NULL(twostack -> a);
-	ASSERT_NOT_NULL(twostack -> b);
+	ASSERT_NOT_NULL(stacks);
+	ASSERT_NOT_NULL(stacks -> a);
+	ASSERT_NOT_NULL(stacks -> b);
 
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
-	push(twostack -> a, 4);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
+	push(stacks -> a, 4);
 	
-	push(twostack -> b, 5);
-	push(twostack -> b, 6);
-	push(twostack -> b, 7);
-	push(twostack -> b, 8);
+	push(stacks -> b, 5);
+	push(stacks -> b, 6);
+	push(stacks -> b, 7);
+	push(stacks -> b, 8);
 
-	ASSERT_EQUAL_INT(2, seek(twostack -> a));
-	ASSERT_EQUAL_INT(6, seek(twostack -> b));
+	ASSERT_EQUAL_INT(2, peek(stacks -> a));
+	ASSERT_EQUAL_INT(6, peek(stacks -> b));
 
-	pop(twostack -> a);
-	pop(twostack -> b);
-	ASSERT_EQUAL_INT(1, seek(twostack -> a));
-	ASSERT_EQUAL_INT(5, seek(twostack -> b));
+	pop(stacks -> a);
+	pop(stacks -> b);
+	ASSERT_EQUAL_INT(1, peek(stacks -> a));
+	ASSERT_EQUAL_INT(5, peek(stacks -> b));
 
-	pop(twostack -> a);
-	pop(twostack -> a);
-	ASSERT_EQUAL_INT(INT_MIN, seek(twostack -> a));
-	print_stack(twostack -> a);
-	free_twostack(twostack);
+	pop(stacks -> a);
+	pop(stacks -> a);
+	ASSERT_EQUAL_INT(INT_MIN, peek(stacks -> a));
+	print_stack(stacks -> a);
+	free_stacks(stacks);
 }
 
 int main()

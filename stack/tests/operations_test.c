@@ -1,214 +1,214 @@
 #include "xtal.h"
-#include "stack.h"
+#include "../stack.h"
 
 TEST(test_sa)
 {
-	t_twostack *twostack = create_twostack(3);
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
+	t_stacks *stacks = create_stacks(3);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
 
 	printf("Stack Before SA: ");
-	print_stack(twostack -> a);	
-	ASSERT_EQUAL_INT(3, seek(twostack -> a));
-	sa(twostack);
+	print_stack(stacks -> a);	
+	ASSERT_EQUAL_INT(3, peek(stacks -> a));
+	sa(stacks);
 	
 	printf("Stack After SA: ");
-	print_stack(twostack -> a);	
-	ASSERT_EQUAL_INT(2, seek(twostack -> a));
+	print_stack(stacks -> a);	
+	ASSERT_EQUAL_INT(2, peek(stacks -> a));
 }
 
 TEST(test_sa_no_elements)
 {
-	t_twostack *twostack = create_twostack(1);
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
+	t_stacks *stacks = create_stacks(1);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
 
 	printf("Stack Before SA: ");
-	print_stack(twostack -> a);	
-	ASSERT_EQUAL_INT(1, seek(twostack -> a));
-	sa(twostack);
+	print_stack(stacks -> a);	
+	ASSERT_EQUAL_INT(1, peek(stacks -> a));
+	sa(stacks);
 	
 	printf("Stack After SA: ");
-	print_stack(twostack -> a);	
-	ASSERT_EQUAL_INT(1, seek(twostack -> a));
+	print_stack(stacks -> a);	
+	ASSERT_EQUAL_INT(1, peek(stacks -> a));
 }
 
 TEST(test_sa_two_elements)
 {
-	t_twostack *twostack = create_twostack(2);
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
+	t_stacks *stacks = create_stacks(2);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
 
 	printf("Stack Before SA: ");
-	print_stack(twostack -> a);	
-	ASSERT_EQUAL_INT(2, seek(twostack -> a));
-	sa(twostack);
+	print_stack(stacks -> a);	
+	ASSERT_EQUAL_INT(2, peek(stacks -> a));
+	sa(stacks);
 	
 	printf("Stack After SA: ");
-	print_stack(twostack -> a);	
-	ASSERT_EQUAL_INT(1, seek(twostack -> a));
+	print_stack(stacks -> a);	
+	ASSERT_EQUAL_INT(1, peek(stacks -> a));
 }
 
 TEST(test_sb)
 {
-	t_twostack *twostack = create_twostack(3);
-	push(twostack -> b, 1);
-	push(twostack -> b, 2);
-	push(twostack -> b, 3);
+	t_stacks *stacks = create_stacks(3);
+	push(stacks -> b, 1);
+	push(stacks -> b, 2);
+	push(stacks -> b, 3);
 
 	printf("Stack Before SB: ");
-	print_stack(twostack -> b);	
-	ASSERT_EQUAL_INT(3, seek(twostack -> b));
-	sb(twostack);
+	print_stack(stacks -> b);	
+	ASSERT_EQUAL_INT(3, peek(stacks -> b));
+	sb(stacks);
 	
 	printf("Stack After SB: ");
-	print_stack(twostack -> b);	
-	ASSERT_EQUAL_INT(2, seek(twostack -> b));
+	print_stack(stacks -> b);	
+	ASSERT_EQUAL_INT(2, peek(stacks -> b));
 }
 
 TEST(test_sb_no_elements)
 {
-	t_twostack *twostack = create_twostack(1);
-	push(twostack -> b, 1);
-	push(twostack -> b, 2);
-	push(twostack -> b, 3);
+	t_stacks *stacks = create_stacks(1);
+	push(stacks -> b, 1);
+	push(stacks -> b, 2);
+	push(stacks -> b, 3);
 
 	printf("Stack Before SB: ");
-	print_stack(twostack -> b);	
-	ASSERT_EQUAL_INT(1, seek(twostack -> b));
-	sb(twostack);
+	print_stack(stacks -> b);	
+	ASSERT_EQUAL_INT(1, peek(stacks -> b));
+	sb(stacks);
 	
 	printf("Stack After SB: ");
-	print_stack(twostack -> b);	
-	ASSERT_EQUAL_INT(1, seek(twostack -> b));
+	print_stack(stacks -> b);	
+	ASSERT_EQUAL_INT(1, peek(stacks -> b));
 }
 
 TEST(test_ss)
 {
-	t_twostack *twostack = create_twostack(3);
-	push(twostack -> b, 1);
-	push(twostack -> b, 2);
-	push(twostack -> b, 3);
+	t_stacks *stacks = create_stacks(3);
+	push(stacks -> b, 1);
+	push(stacks -> b, 2);
+	push(stacks -> b, 3);
 
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
 
 	printf("Stacks:\n");
-	print_stack(twostack -> a);	
-	print_stack(twostack -> b);	
-	ASSERT_EQUAL_INT(3, seek(twostack -> b));
+	print_stack(stacks -> a);	
+	print_stack(stacks -> b);	
+	ASSERT_EQUAL_INT(3, peek(stacks -> b));
 
-	ss(twostack);	
+	ss(stacks);	
 	printf("Stacks After SS:\n");
-	print_stack(twostack -> b);	
-	print_stack(twostack -> a);
-	ASSERT_EQUAL_INT(2, seek(twostack -> b));
+	print_stack(stacks -> b);	
+	print_stack(stacks -> a);
+	ASSERT_EQUAL_INT(2, peek(stacks -> b));
 
-	ss(twostack);	
+	ss(stacks);	
 	printf("Stacks After SS:\n");
-	print_stack(twostack -> b);	
-	print_stack(twostack -> a);
-	ASSERT_EQUAL_INT(3, seek(twostack -> b));
+	print_stack(stacks -> b);	
+	print_stack(stacks -> a);
+	ASSERT_EQUAL_INT(3, peek(stacks -> b));
 }
 
 TEST(test_pa)
 {
-	t_twostack *twostack = create_twostack(6);
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
+	t_stacks *stacks = create_stacks(6);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
 
-	push(twostack -> b, 4);
-	push(twostack -> b, 5);
-	push(twostack -> b, 6);
+	push(stacks -> b, 4);
+	push(stacks -> b, 5);
+	push(stacks -> b, 6);
 
 
-	print_twostack(twostack);
+	print_stacks(stacks);
 
-	pa(twostack);
+	pa(stacks);
 	printf("\nStacks After PA:\n");
-	print_twostack(twostack);
-	ASSERT_EQUAL_INT(6, seek(twostack -> a));
+	print_stacks(stacks);
+	ASSERT_EQUAL_INT(6, peek(stacks -> a));
 
-	pa(twostack);
-	pa(twostack);
-	pa(twostack);
-	pa(twostack);
+	pa(stacks);
+	pa(stacks);
+	pa(stacks);
+	pa(stacks);
 	printf("Stacks After Spamming PA:\n");
-	print_twostack(twostack);
-	ASSERT_EQUAL_INT(4, seek(twostack -> a));
-	ASSERT_EQUAL_INT(INT_MIN, seek(twostack -> b));
+	print_stacks(stacks);
+	ASSERT_EQUAL_INT(4, peek(stacks -> a));
+	ASSERT_EQUAL_INT(INT_MIN, peek(stacks -> b));
 }
 
 TEST(test_pb)
 {
-	t_twostack *twostack = create_twostack(6);
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
-	ASSERT_EQUAL_INT(2, twostack -> a -> top)
+	t_stacks *stacks = create_stacks(6);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
+	ASSERT_EQUAL_INT(2, stacks -> a -> top)
 
-	push(twostack -> b, 4);
-	push(twostack -> b, 5);
-	push(twostack -> b, 6);
+	push(stacks -> b, 4);
+	push(stacks -> b, 5);
+	push(stacks -> b, 6);
 
 
-	print_twostack(twostack);
+	print_stacks(stacks);
 
-	pb(twostack);
+	pb(stacks);
 	printf("\nStacks After PB:\n");
-	print_twostack(twostack);
-	ASSERT_EQUAL_INT(3, seek(twostack -> b));
+	print_stacks(stacks);
+	ASSERT_EQUAL_INT(3, peek(stacks -> b));
 
-	pb(twostack);
-	pb(twostack);
-	pb(twostack);
-	pb(twostack);
+	pb(stacks);
+	pb(stacks);
+	pb(stacks);
+	pb(stacks);
 	printf("Stacks After Spamming PB:\n");
-	print_twostack(twostack);
-	ASSERT_EQUAL_INT(1, seek(twostack -> b));
-	ASSERT_EQUAL_INT(INT_MIN, seek(twostack -> a));
+	print_stacks(stacks);
+	ASSERT_EQUAL_INT(1, peek(stacks -> b));
+	ASSERT_EQUAL_INT(INT_MIN, peek(stacks -> a));
 }
 
 TEST(test_ra)
 {
-	t_twostack *twostack = create_twostack(3);
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
-	ASSERT_EQUAL_INT(2, twostack -> a -> top);
+	t_stacks *stacks = create_stacks(3);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
+	ASSERT_EQUAL_INT(2, stacks -> a -> top);
 	
-	print_twostack(twostack);
-	ra(twostack);
-	ASSERT_EQUAL_INT(2, twostack -> a -> top);
+	print_stacks(stacks);
+	ra(stacks);
+	ASSERT_EQUAL_INT(2, stacks -> a -> top);
 	printf("\nStacks After RA:\n");
-	print_twostack(twostack);
-	ASSERT_EQUAL_INT(2, seek(twostack -> a));
+	print_stacks(stacks);
+	ASSERT_EQUAL_INT(2, peek(stacks -> a));
 
-	ra(twostack);
-	ra(twostack);
-	ASSERT_EQUAL_INT(2, twostack -> a -> top);
+	ra(stacks);
+	ra(stacks);
+	ASSERT_EQUAL_INT(2, stacks -> a -> top);
 	printf("Stacks After Spamming RA:\n");
-	print_twostack(twostack);
+	print_stacks(stacks);
 }
 
 TEST(test_ra_no_space)
 {
-	t_twostack *twostack = create_twostack(1);
-	push(twostack -> a, 1);
-	push(twostack -> a, 2);
-	push(twostack -> a, 3);
-	ASSERT_EQUAL_INT(0, twostack -> a -> top);
+	t_stacks *stacks = create_stacks(1);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
+	ASSERT_EQUAL_INT(0, stacks -> a -> top);
 	
-	print_twostack(twostack);
-	ra(twostack);
-	ASSERT_EQUAL_INT(0, twostack -> a -> top);
+	print_stacks(stacks);
+	ra(stacks);
+	ASSERT_EQUAL_INT(0, stacks -> a -> top);
 	printf("\nStacks After RA:\n");
-	print_twostack(twostack);
-	ASSERT_EQUAL_INT(1, seek(twostack -> a));
+	print_stacks(stacks);
+	ASSERT_EQUAL_INT(1, peek(stacks -> a));
 }
 
 int main()

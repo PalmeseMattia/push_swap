@@ -1,5 +1,5 @@
 #include "xtal.h"
-#include "stack.h"
+#include "../stack.h"
 
 TEST(test_create_stack)
 {
@@ -15,13 +15,13 @@ TEST(test_create_stack)
 
 	ASSERT_EQUAL_INT(1, stack -> elements[0]);
 	ASSERT_EQUAL_INT(2, stack -> elements[1]);
-	ASSERT_EQUAL_INT(2, seek(stack));
+	ASSERT_EQUAL_INT(2, peek(stack));
 
 	pop(stack);
-	ASSERT_EQUAL_INT(1, seek(stack));
+	ASSERT_EQUAL_INT(1, peek(stack));
 	
 	pop(stack);
-	ASSERT_EQUAL_INT(INT_MIN, seek(stack));
+	ASSERT_EQUAL_INT(INT_MIN, peek(stack));
 	
 	free_stack(stack);
 }

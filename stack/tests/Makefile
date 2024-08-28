@@ -1,6 +1,6 @@
 SRCS := $(wildcard *.c)
 
-FILES := ../stack.c ../twostack.c ../operations.c
+FILES := ../stack.c ../stacks.c ../operations.c
 
 FLAGS := -I../../includes
 
