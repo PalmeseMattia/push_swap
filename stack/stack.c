@@ -11,7 +11,7 @@ t_stack	*create_stack(unsigned int n)
 	stack -> top = -1;
 	if (n > 0)
 	{
-		stack -> elements = calloc(stack -> capacity, sizeof(int));
+		stack -> elements = (int *)calloc(stack -> capacity, sizeof(int));
 		if (stack -> elements == NULL)
 		{
 			free(stack);

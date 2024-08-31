@@ -134,6 +134,25 @@ void	rr(t_stacks *stacks)
  * rra (reverse rotate a): Shift down all elements of stack a by 1.
  * The last element becomes the first one.
  */
+void	rra(t_stacks *stacks)
+{
+		int		last;
+		t_stack *a;
+		int		i;
+
+		a = stacks -> a;
+		if (a -> top > 0)
+		{
+			last = a -> elements[0];
+			i = 0;
+			while (i < a -> top)
+			{
+				a -> elements[i] = a -> elements[i + 1];
+				i++;
+			}
+			a -> elements[a -> top] = last;
+		}
+}
 
 /*
  * rrb (reverse rotate b): Shift down all elements of stack b by 1.

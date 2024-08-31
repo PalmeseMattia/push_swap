@@ -42,5 +42,6 @@ void		ss(t_stacks *stacks);
 void		pa(t_stacks *stacks);
 void		pb(t_stacks *stacks);
 void		ra(t_stacks *stacks);
+void		rra(t_stacks *stacks);
 
 #endif
