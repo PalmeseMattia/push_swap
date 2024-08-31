@@ -211,6 +211,21 @@ TEST(test_ra_no_space)
 	ASSERT_EQUAL_INT(1, peek(stacks -> a));
 }
 
+TEST(test_rra)
+{
+	t_stacks *stacks = create_stacks(3);
+	push(stacks -> a, 1);
+	push(stacks -> a, 2);
+	push(stacks -> a, 3);
+	
+	printf("\nStacks Before RRA:\n");
+	print_stacks(stacks);
+	rra(stacks);
+	printf("\nStacks After RA:\n");
+	print_stacks(stacks);
+	ASSERT_EQUAL_INT(1, peek(stacks -> a));
+}
+
 int main()
 {
 	run_tests();
