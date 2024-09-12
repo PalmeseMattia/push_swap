@@ -25,6 +25,7 @@ int main()
 	}
 	// Print and free the stack
 	for (int i = 0; i < 11; i++) {
+		operations[i](permutations[i]);
 		print_stacks(permutations[i]);
 	}
 	free_stacks(stacks);
