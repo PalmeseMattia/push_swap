@@ -34,6 +34,7 @@ void		print_stack(t_stack *stack);
 void		free_stack(t_stack *stack);
 void		free_stacks(t_stacks *stacks);
 void		print_stacks(t_stacks *stacks);
+void		copy_stacks(t_stacks *src, t_stacks *dst);
 
 // OPERATIONS
 void		sa(t_stacks *stacks);
@@ -42,6 +43,8 @@ void		ss(t_stacks *stacks);
 void		pa(t_stacks *stacks);
 void		pb(t_stacks *stacks);
 void		ra(t_stacks *stacks);
+void		rb(t_stacks *stacks);
+void		rr(t_stacks *stacks);
 void		rra(t_stacks *stacks);
 void		rrb(t_stacks *stacks);
 void		rrr(t_stacks *stacks);

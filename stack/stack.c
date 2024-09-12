@@ -89,4 +89,3 @@ void print_stack(t_stack *stack)
 	}
 	printf("]\n");
 }
-

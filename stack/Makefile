@@ -2,7 +2,7 @@ LIB = stacks.a
 CC = gcc
 SRC = stacks.c operations.c stack.c
 OBJ = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 all : $(LIB)
 
@@ -14,3 +14,8 @@ $(LIB) : $(OBJ)
 
 clean :
 	rm *.o
+
+fclean : clean
+	rm $(LIB)
+
+re : fclean all

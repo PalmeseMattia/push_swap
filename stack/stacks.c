@@ -33,6 +33,16 @@ void	free_stacks(t_stacks *stacks)
 	}
 }
 
+void copy_stacks(t_stacks *src, t_stacks *dst)
+{
+	for (int i = 0; i < dst -> a -> capacity; i++) {
+		dst -> a -> elements[i] = src -> a -> elements[i];
+		dst -> b -> elements[i] = src -> b -> elements[i];
+	}
+	dst -> a -> top = src -> a -> top;
+	dst -> b -> top = src -> b -> top;
+}
+
 void	print_stacks(t_stacks *stacks)
 {
 	printf("Stack A: ");
