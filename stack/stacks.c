@@ -20,6 +20,9 @@ t_stacks	*create_stacks(int capacity)
 		free(result);
 		return (NULL);
 	}
+	result -> n_operations = 0;
+	result -> orderliness = 0;
+	result -> operations = NULL;
 	return (result);
 }
 
@@ -41,6 +44,18 @@ void copy_stacks(t_stacks *src, t_stacks *dst)
 	}
 	dst -> a -> top = src -> a -> top;
 	dst -> b -> top = src -> b -> top;
+	dst -> orderliness = src -> orderliness;
+	dst -> n_operations = src -> n_operations;
+}
+
+void add_operation(t_stacks *s, char *op)
+{
+	if (!s -> operations)
+		s -> operations = (char **)malloc(10 * sizeof(char *));
+	if (s -> n_operations % 10 == 0)
+			s -> operations = realloc(s -> operations, s -> n_operations + 10);
+	s -> operations[s -> n_operations] = (char *)malloc((strlen(op) + 1) * sizeof(char));
+	strcpy(s -> operations[s -> n_operations++], op);
 }
 
 void	print_stacks(t_stacks *stacks)
@@ -49,4 +64,12 @@ void	print_stacks(t_stacks *stacks)
 	print_stack(stacks -> a);
 	printf("Stack B: ");
 	print_stack(stacks -> b);
+	printf("Orderliness: %d\n", stacks -> orderliness);
+	printf("Number of operations: %d\n", stacks -> n_operations);
+	printf("Operations: [");
+	for(int i = 0; i < stacks -> n_operations - 1; i++) {
+		printf("%s, ", stacks -> operations[i]);
+	}
+
+	printf("%s]\n", stacks -> operations[stacks -> n_operations - 1]);
 }

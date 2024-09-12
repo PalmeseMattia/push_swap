@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <stdio.h>
+#include <string.h>
 
 #define BUFFER_SIZE 10
 
@@ -18,6 +19,9 @@ typedef struct s_stacks
 {
 	t_stack	*a;
 	t_stack *b;
+	char	**operations;
+	int		n_operations;
+	int		orderliness;
 }	t_stacks;
 
 t_stack		*create_stack(unsigned int n);
@@ -35,6 +39,7 @@ void		free_stack(t_stack *stack);
 void		free_stacks(t_stacks *stacks);
 void		print_stacks(t_stacks *stacks);
 void		copy_stacks(t_stacks *src, t_stacks *dst);
+void		add_operation(t_stacks *s, char *op);
 
 // OPERATIONS
 void		sa(t_stacks *stacks);
