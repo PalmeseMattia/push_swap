@@ -2,7 +2,7 @@ LIB = stacks.a
 CC = gcc
 SRC = stacks.c operations.c stack.c
 OBJ = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -O3
 
 all : $(LIB)
 

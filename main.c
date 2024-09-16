@@ -50,12 +50,19 @@ int main()
 	t_stacks *best = create_stacks(10);
 	copy_stacks(stacks, best);
 
+	t_taboo taboo = create_taboo();
+
 	while (stacks -> orderliness != 10) {
-		dfs(stacks, 0, sorted, best);
+		dfs(stacks, 0, sorted, best, taboo);
+		add_taboo(best, &taboo);
+		print_taboo(taboo);
+
 		copy_stacks(best, stacks);
-		printf("\e[42m Best stack is: \n");
+		
+		printf("\e[42mBest stack is: \n");
 		print_stacks(best);
 		printf("\e[0m\n");
+		
 		empty_stack(best);
 	}
 	
@@ -66,7 +73,7 @@ int main()
 	return (0);
 }
 
-void dfs(t_stacks *stacks, int depth, int *sorted, t_stacks *best)
+void dfs(t_stacks *stacks, int depth, int *sorted, t_stacks *best, t_taboo taboo)
 {
 	//For each copy we do a DFS
 	t_stacks **copies = (t_stacks **)malloc(11 * sizeof(t_stacks *));
@@ -80,21 +87,30 @@ void dfs(t_stacks *stacks, int depth, int *sorted, t_stacks *best)
 		add_operation(copies[i], operations_name[i]);
 		//Go deep on this copy if not at max depth
 		if (depth < MAX_DEPTH)
-				dfs(copies[i], depth + 1, sorted, best);
+				dfs(copies[i], depth + 1, sorted, best, taboo);
 		//Store if the stack is the most sorted in less moves
 		if (copies[i] -> orderliness >= best -> orderliness) {
-			if (copies[i] -> orderliness == best -> orderliness) {
-				if (copies[i] -> n_operations < best -> n_operations) {
-					printf("Found a better stack\n");
+			// If stack not in taboo
+			if (!in_taboo(copies[i], taboo))
+			{
+				// If same order but less moves
+				if (copies[i] -> orderliness == best -> orderliness) {
+					if (copies[i] -> n_operations < best -> n_operations) {
+						printf("\e[45mFound a better stack\n");
+						print_stacks(copies[i]);
+						copy_stacks(copies[i], best);
+						printf("\e[0m\n");
+					}
+				// More order
+				} else {
+					printf("\e[45mFound a better stack\n");
 					print_stacks(copies[i]);
 					copy_stacks(copies[i], best);
+					printf("\e[0m\n");
 				}
-			} else {
-				printf("Found a better stack\n");
-				print_stacks(copies[i]);
-				copy_stacks(copies[i], best);
 			}
 		}
+		//printf("Orderliness : %d\n", copies[i] -> orderliness);
 		//print_stacks(copies[i]);
 		free_stacks(copies[i]);
 	}

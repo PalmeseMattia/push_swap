@@ -65,7 +65,7 @@ void	free_operations(t_stacks *stacks)
 
 void copy_stacks(t_stacks *src, t_stacks *dst)
 {
-	for (int i = 0; i < dst -> a -> capacity; i++) {
+	for (int i = 0; i < src -> a -> capacity; i++) {
 		dst -> a -> elements[i] = src -> a -> elements[i];
 		dst -> b -> elements[i] = src -> b -> elements[i];
 	}
@@ -126,6 +126,8 @@ void	empty_stack(t_stacks *stacks)
 int equal(t_stacks *s1, t_stacks *s2)
 {
 	if (s1 -> orderliness != s2 -> orderliness)
+		return 0;
+	if (s1 -> a -> top != s2 -> a -> top || s1 -> b -> top != s2 -> b -> top)
 		return 0;
 	for (int i = 0; i < s1 -> a -> top; i++) {
 		if (s1 -> a -> elements[i] != s2 -> a -> elements[i])
