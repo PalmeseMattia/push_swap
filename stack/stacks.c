@@ -122,3 +122,18 @@ void	empty_stack(t_stacks *stacks)
 	free_operations(stacks);
 	stacks -> orderliness = 0;
 }
+
+int equal(t_stacks *s1, t_stacks *s2)
+{
+	if (s1 -> orderliness != s2 -> orderliness)
+		return 0;
+	for (int i = 0; i < s1 -> a -> top; i++) {
+		if (s1 -> a -> elements[i] != s2 -> a -> elements[i])
+			return 0;
+	}
+	for (int i = 0; i < s1 -> b -> top; i++) {
+		if (s1 -> b -> elements[i] != s2 -> b -> elements[i])
+			return 0;
+	}
+	return 1;
+}

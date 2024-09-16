@@ -42,6 +42,7 @@ void		copy_stacks(t_stacks *src, t_stacks *dst);
 void		add_operation(t_stacks *s, char *op);
 void		copy_stacks(t_stacks *src, t_stacks *dst);
 void		empty_stack(t_stacks *stacks);
+int			equal(t_stacks *s1, t_stacks *s2);
 
 // OPERATIONS
 void		sa(t_stacks *stacks);

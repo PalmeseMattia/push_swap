@@ -53,8 +53,9 @@ int main()
 	while (stacks -> orderliness != 10) {
 		dfs(stacks, 0, sorted, best);
 		copy_stacks(best, stacks);
-		printf("Best stack is:\n");
+		printf("\e[42m Best stack is: \n");
 		print_stacks(best);
+		printf("\e[0m\n");
 		empty_stack(best);
 	}
 	

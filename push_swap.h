@@ -3,7 +3,7 @@
 
 #include "./stack/stack.h"
 
-#define MAX_DEPTH 3
+#define MAX_DEPTH 5
 
 typedef void(*ops)(t_stacks *);
 static ops operations[11] = {sa,sb,ss,pa,pb,ra,rb,rr,rra,rrb,rrr};
