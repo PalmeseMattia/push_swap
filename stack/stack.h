@@ -40,6 +40,7 @@ void		free_stacks(t_stacks *stacks);
 void		print_stacks(t_stacks *stacks);
 void		copy_stacks(t_stacks *src, t_stacks *dst);
 void		add_operation(t_stacks *s, char *op);
+void		copy_stacks(t_stacks *src, t_stacks *dst);
 
 // OPERATIONS
 void		sa(t_stacks *stacks);

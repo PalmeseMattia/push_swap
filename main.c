@@ -21,7 +21,6 @@ int get_orderliness(int *sorted, int *target, int size)
 	return result;
 }
 
-void dfs(t_stacks *stacks, int depth, int *sorted);
 int main()
 {
 	// Initialize random
@@ -32,6 +31,8 @@ int main()
 	for (int i = 0; i < 10; i++) {
 		push(stacks -> a, rand() % 100);
 	}
+	printf("Original stack:\n");
+	print_stacks(stacks);
 	
 	// Get the sorted Array
 	int *sorted = (int *)calloc(10, sizeof(int));
@@ -39,19 +40,26 @@ int main()
 		sorted[i] = stacks -> a -> elements[i];
 	}
 	quickSort(sorted, 0, 9);
-	printf("Sorted array:\n");
-	for (int i = 0; i < 10; i++) {
+	printf("Sorted array:\n[");
+	for (int i = 0; i < 9; i++) {
 		printf("%d ,",sorted[i]);
 	}
+	printf("%d]",sorted[9]);
 	printf("\n\n");
 
-	dfs(stacks, 0, sorted);
+	t_stacks *best = create_stacks(10);
+	
+	dfs(stacks, 0, sorted, best);
+	
+	printf("Best stack is:\n");
+	print_stacks(best);
+	
 	free_stacks(stacks);
 	free(sorted);
 	return (0);
 }
 
-void dfs(t_stacks *stacks, int depth, int *sorted)
+void dfs(t_stacks *stacks, int depth, int *sorted, t_stacks *best)
 {
 	//For each copy we do a DFS
 	t_stacks **copies = (t_stacks **)malloc(11 * sizeof(t_stacks *));
@@ -65,10 +73,17 @@ void dfs(t_stacks *stacks, int depth, int *sorted)
 		add_operation(copies[i], operations_name[i]);
 		//Go deep on this copy if not at max depth
 		if (depth < MAX_DEPTH)
-				dfs(copies[i], depth + 1, sorted);
+				dfs(copies[i], depth + 1, sorted, best);
 		//Store if the stack is the most sorted in less moves
-		//printf("Depth: %d I: %d\n", depth, i);
-		print_stacks(copies[i]);
+		if (copies[i] -> orderliness >= best -> orderliness) {
+			if (copies[i] -> orderliness == best -> orderliness) {
+				if (copies[i] -> n_operations < best -> n_operations)
+					copy_stacks(copies[i], best);
+			} else {
+				copy_stacks(copies[i], best);
+			}
+		}
+		//print_stacks(copies[i]);
 		free_stacks(copies[i]);
 	}
 	free(copies);

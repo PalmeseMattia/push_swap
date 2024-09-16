@@ -47,6 +47,22 @@ void	free_stacks(t_stacks *stacks)
 	}
 }
 
+void	free_operations(t_stacks *stacks)
+{
+	int	i;
+
+	i = 0;
+	if (stacks -> operations)
+	{
+		while (i < stacks -> n_operations) {
+			free(stacks -> operations[i]);
+			i++;
+		}
+	}
+	free(stacks -> operations);
+	stacks -> operations = NULL;
+}
+
 void copy_stacks(t_stacks *src, t_stacks *dst)
 {
 	for (int i = 0; i < dst -> a -> capacity; i++) {
@@ -57,6 +73,7 @@ void copy_stacks(t_stacks *src, t_stacks *dst)
 	dst -> b -> top = src -> b -> top;
 	dst -> orderliness = src -> orderliness;
 	dst -> n_operations = src -> n_operations;
+	free_operations(dst);
 	dst -> operations = (char **)malloc(src -> n_operations * sizeof(char *));
 	if (!dst -> operations) {
 		perror("Failed to allocate operations array in copy_stacks");
@@ -86,9 +103,12 @@ void	print_stacks(t_stacks *stacks)
 	printf("Orderliness: %d\n", stacks -> orderliness);
 	printf("Number of operations: %d\n", stacks -> n_operations);
 	printf("Operations: [");
-	for(int i = 0; i < stacks -> n_operations - 1; i++) {
-		printf("%s, ", stacks -> operations[i]);
+	if (stacks -> operations)
+	{
+		for(int i = 0; i < stacks -> n_operations - 1; i++) {
+			printf("%s, ", stacks -> operations[i]);
+		}
+		printf("%s", stacks -> operations[stacks -> n_operations - 1]);
 	}
-
-	printf("%s]\n", stacks -> operations[stacks -> n_operations - 1]);
+	printf("]\n");
 }
