@@ -1,39 +1,8 @@
-#include "./stack/stack.h"
+#include "push_swap.h"
 #include <time.h>
 #include <stdlib.h>
 
-typedef void(*ops)(t_stacks *);
 
-// Function to swap two elements
-void swap(int* a, int* b) {
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-// Partition function: selects a pivot and partitions the array around it
-int partition(int *arr, int low, int high) {
-	int pivot = arr[high];  // pivot element
-	int i = (low - 1);  // index of smaller element
-
-	for (int j = low; j < high; j++) {
-		if (arr[j] <= pivot) {
-			i++;  // increment index of smaller element
-			swap(&arr[i], &arr[j]);
-		}
-	}
-	swap(&arr[i + 1], &arr[high]);
-	return (i + 1);
-}
-
-// QuickSort function
-void quickSort(int *arr, int low, int high) {
-	if (low < high) {
-		int pi = partition(arr, low, high);  // pi is partitioning index
-		quickSort(arr, low, pi - 1);  // recursively sort left subarray
-		quickSort(arr, pi + 1, high);  // recursively sort right subarray
-	}
-}
 /**
  * This functions takes two arrays as arguments
  * and returns the number of equal elements at the same index.
@@ -52,14 +21,12 @@ int get_orderliness(int *sorted, int *target, int size)
 	return result;
 }
 
+void dfs(t_stacks *stacks, int depth, int *sorted);
 int main()
 {
 	// Initialize random
 	srand(time(NULL));
 	t_stacks *stacks = create_stacks(10);
-	// Array of moves
-	ops operations[11] = {sa,sb,ss,pa,pb,ra,rb,rr,rra,rrb,rrr};
-	char *operations_name[] = {"sa","sb","ss","pa","pb","ra","rb","rr","rra","rrb","rrr"};
 	
 	// Push random elements in the stack
 	for (int i = 0; i < 10; i++) {
@@ -78,22 +45,31 @@ int main()
 	}
 	printf("\n\n");
 
-	// Array of possible permutations
-	t_stacks **permutations = (t_stacks **)malloc(11 * sizeof(t_stacks *));
-	for (int i = 0; i < 11; i++) {
-		permutations[i] = create_stacks(10);
-		copy_stacks(stacks, permutations[i]);
-	}
-	// Print and free the stack
-	for (int i = 0; i < 11; i++) {
-		operations[i](permutations[i]);
-		permutations[i] -> orderliness = get_orderliness(sorted, permutations[i] -> a -> elements, 10);
-		add_operation(permutations[i], operations_name[i]);
-		print_stacks(permutations[i]);
-		printf("\n");
-	}
+	dfs(stacks, 0, sorted);
 	free_stacks(stacks);
+	free(sorted);
 	return (0);
 }
 
-
+void dfs(t_stacks *stacks, int depth, int *sorted)
+{
+	//For each copy we do a DFS
+	t_stacks **copies = (t_stacks **)malloc(11 * sizeof(t_stacks *));
+	for (int i = 0; i < 11; i++) {
+		//Create a copy of the original stack
+		copies[i] = create_stacks(10);
+		copy_stacks(stacks, copies[i]);
+		//Apply operation
+		operations[i](copies[i]);
+		copies[i] -> orderliness = get_orderliness(sorted, copies[i] -> a -> elements, copies[i] -> a -> top);
+		add_operation(copies[i], operations_name[i]);
+		//Go deep on this copy if not at max depth
+		if (depth < MAX_DEPTH)
+				dfs(copies[i], depth + 1, sorted);
+		//Store if the stack is the most sorted in less moves
+		//printf("Depth: %d I: %d\n", depth, i);
+		print_stacks(copies[i]);
+		free_stacks(copies[i]);
+	}
+	free(copies);
+}

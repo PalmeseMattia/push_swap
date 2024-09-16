@@ -28,10 +28,21 @@ t_stacks	*create_stacks(int capacity)
 
 void	free_stacks(t_stacks *stacks)
 {
+	int	i;
+
+	i = 0;
 	if (stacks)
 	{
 		free_stack(stacks -> a);
 		free_stack(stacks -> b);
+		while (i < stacks -> n_operations) {
+			if (stacks -> operations[i]) {
+				free(stacks -> operations[i]);
+				stacks->operations[i] = NULL;
+			}
+			i++;
+		}
+		free(stacks -> operations);
 		free(stacks);
 	}
 }
@@ -46,16 +57,24 @@ void copy_stacks(t_stacks *src, t_stacks *dst)
 	dst -> b -> top = src -> b -> top;
 	dst -> orderliness = src -> orderliness;
 	dst -> n_operations = src -> n_operations;
+	dst -> operations = (char **)malloc(src -> n_operations * sizeof(char *));
+	if (!dst -> operations) {
+		perror("Failed to allocate operations array in copy_stacks");
+		exit(EXIT_FAILURE);
+	}
+	for (int i = 0; i < src -> n_operations; i++) {
+		char *op = src -> operations[i];
+		dst -> operations[i] = (char *)malloc((strlen(op) + 1) * sizeof(char));
+		strcpy(dst -> operations[i], op);
+	}
 }
 
 void add_operation(t_stacks *s, char *op)
 {
-	if (!s -> operations)
-		s -> operations = (char **)malloc(10 * sizeof(char *));
-	if (s -> n_operations % 10 == 0)
-			s -> operations = realloc(s -> operations, s -> n_operations + 10);
+	s -> operations = (char **)realloc(s -> operations, (s -> n_operations + 1) * sizeof(char *));
 	s -> operations[s -> n_operations] = (char *)malloc((strlen(op) + 1) * sizeof(char));
-	strcpy(s -> operations[s -> n_operations++], op);
+	strcpy(s -> operations[s -> n_operations], op);
+	s -> n_operations++;
 }
 
 void	print_stacks(t_stacks *stacks)

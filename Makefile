@@ -1,8 +1,9 @@
 STACKLIB = stack/stacks.a
 STACKLIB_DIR = ./stack
+SRC = main.c quicksort.c
 
 all : main.c
-	gcc -g main.c $(STACKLIB) -o main
+	gcc -g $(SRC) $(STACKLIB) -o main
 
 main.c : $(STACKLIB)
 	
