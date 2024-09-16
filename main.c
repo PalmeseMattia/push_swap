@@ -48,10 +48,16 @@ int main()
 	printf("\n\n");
 
 	t_stacks *best = create_stacks(10);
+	copy_stacks(stacks, best);
+
+	while (stacks -> orderliness != 10) {
+		dfs(stacks, 0, sorted, best);
+		copy_stacks(best, stacks);
+		printf("Best stack is:\n");
+		print_stacks(best);
+		empty_stack(best);
+	}
 	
-	dfs(stacks, 0, sorted, best);
-	
-	printf("Best stack is:\n");
 	print_stacks(best);
 	
 	free_stacks(stacks);
@@ -77,9 +83,14 @@ void dfs(t_stacks *stacks, int depth, int *sorted, t_stacks *best)
 		//Store if the stack is the most sorted in less moves
 		if (copies[i] -> orderliness >= best -> orderliness) {
 			if (copies[i] -> orderliness == best -> orderliness) {
-				if (copies[i] -> n_operations < best -> n_operations)
+				if (copies[i] -> n_operations < best -> n_operations) {
+					printf("Found a better stack\n");
+					print_stacks(copies[i]);
 					copy_stacks(copies[i], best);
+				}
 			} else {
+				printf("Found a better stack\n");
+				print_stacks(copies[i]);
 				copy_stacks(copies[i], best);
 			}
 		}

@@ -112,3 +112,13 @@ void	print_stacks(t_stacks *stacks)
 	}
 	printf("]\n");
 }
+
+/*
+ * This function will free the operations array and 
+ * set the orderliness to 0.
+ */
+void	empty_stack(t_stacks *stacks)
+{
+	free_operations(stacks);
+	stacks -> orderliness = 0;
+}
