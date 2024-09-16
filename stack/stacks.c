@@ -58,9 +58,9 @@ void	free_operations(t_stacks *stacks)
 			free(stacks -> operations[i]);
 			i++;
 		}
+		free(stacks -> operations);
+		stacks -> operations = NULL;
 	}
-	free(stacks -> operations);
-	stacks -> operations = NULL;
 }
 
 void copy_stacks(t_stacks *src, t_stacks *dst)
@@ -72,8 +72,8 @@ void copy_stacks(t_stacks *src, t_stacks *dst)
 	dst -> a -> top = src -> a -> top;
 	dst -> b -> top = src -> b -> top;
 	dst -> orderliness = src -> orderliness;
-	dst -> n_operations = src -> n_operations;
 	free_operations(dst);
+	dst -> n_operations = src -> n_operations;
 	dst -> operations = (char **)malloc(src -> n_operations * sizeof(char *));
 	if (!dst -> operations) {
 		perror("Failed to allocate operations array in copy_stacks");
