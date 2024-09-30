@@ -1,5 +1,5 @@
 OUT = push_swap
-SRCS = main.c ft_strisnum.c
+SRCS = main.c ft_strisnum.c moves.c
 LIBFT = libft.a
 
 all : $(LIBFT)

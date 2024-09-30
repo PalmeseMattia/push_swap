@@ -1,18 +1,5 @@
 #include "push_swap.h"
 
-typedef struct s_stack
-{
-	int	*elements;
-	int	capacity;
-	int	top;
-}	t_stack;
-
-typedef struct s_stacks
-{
-	t_stack	*a;
-	t_stack	*b;
-}	t_stacks;
-
 t_stacks	*new_stacks(int capacity)
 {
 	t_stacks *result = (t_stacks *)malloc(sizeof(t_stacks));
@@ -114,6 +101,12 @@ int main(int argc, char **argv)
 	for (int i = 0; i < stacks -> a -> capacity; i++)
 	{
 		ft_printf("%d\n", stacks -> a -> elements[i]);
+	}
+
+	//Sort 2 elements
+	if (stacks -> a -> capacity == 2 && stacks -> a -> elements[0] > stacks -> a -> elements[1])
+	{
+		sa(stacks);
 	}
 
 	return (0);

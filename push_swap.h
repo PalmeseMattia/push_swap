@@ -3,7 +3,20 @@
 
 #include <stdlib.h>
 #include "libft/libft.h"
+typedef struct s_stack
+{
+	int	*elements;
+	int	capacity;
+	int	top;
+}	t_stack;
 
-int	ft_strisnum(char *str);
+typedef struct s_stacks
+{
+	t_stack	*a;
+	t_stack	*b;
+}	t_stacks;
+
+int		ft_strisnum(char *str);
+void	sa(t_stacks *stacks);
 
 #endif
