@@ -1,31 +1,8 @@
 #include "push_swap.h"
 
-t_stacks	*new_stacks(int capacity)
-{
-	t_stacks *result = (t_stacks *)malloc(sizeof(t_stacks));
-	if (!result)
-		return (NULL);
-	result -> a = (t_stack *)malloc(sizeof(t_stack));
-	if (!result -> a)
-	{
-		free(result);
-		return (NULL);
-	}
-	result -> b = (t_stack *)malloc(sizeof(t_stack));
-	if (!result -> b)
-	{
-		free(result -> a);
-		free(result);
-		return (NULL);
-	}
-	result -> a -> capacity = capacity;
-	result -> b -> capacity = capacity;
-	result -> a -> elements = (int *)calloc(capacity, sizeof(int));
-	result -> b -> elements = (int *)calloc(capacity, sizeof(int));
-	result -> a -> top = 0;
-	result -> b -> top = 0;
-	return (result);
-}
+
+void	sort_three(t_stacks *stacks);
+
 
 int	is_sorted(int *array, int size)
 {
@@ -67,7 +44,7 @@ int main(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		stacks -> a -> elements[i - 1] = ft_atoi(argv[i]);
+		push(stacks,  ft_atoi(argv[i]));
 		i++;
 	}
 
@@ -102,12 +79,30 @@ int main(int argc, char **argv)
 	{
 		ft_printf("%d\n", stacks -> a -> elements[i]);
 	}
+	ft_printf("TOP: %d\n", stacks -> a -> top);
 
 	//Sort 2 elements
 	if (stacks -> a -> capacity == 2 && stacks -> a -> elements[0] > stacks -> a -> elements[1])
 	{
 		sa(stacks);
 	}
+	else if (stacks -> a -> capacity == 3)
+	{
+		sort_three(stacks);
+	}
 
 	return (0);
+}
+
+void	sort_three(t_stacks *s)
+{
+	if (s -> a -> elements[2] != 2)
+	{
+		if (s -> a -> elements[0] == 2)
+			ra(s);
+		else
+			rra(s);
+	}
+	if (s -> a -> elements[0] > s -> a -> elements[1] )
+		sa(s);
 }

@@ -16,7 +16,15 @@ typedef struct s_stacks
 	t_stack	*b;
 }	t_stacks;
 
-int		ft_strisnum(char *str);
-void	sa(t_stacks *stacks);
+int			ft_strisnum(char *str);
+void		sa(t_stacks *stacks);
+void		sb(t_stacks *stacks);
+void		ra(t_stacks *stacks);
+void		rra(t_stacks *stacks);
+void		rb(t_stacks *stacks);
+void		rrb(t_stacks *stacks);
+
+t_stacks	*new_stacks(int capacity);
+void		push(t_stacks *s, int num);
 
 #endif
