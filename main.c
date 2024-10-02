@@ -82,16 +82,45 @@ int main(int argc, char **argv)
 	ft_printf("TOP: %d\n", stacks -> a -> top);
 
 	//Sort 2 elements
-	if (stacks -> a -> capacity == 2 && stacks -> a -> elements[0] > stacks -> a -> elements[1])
+	int capacity = stacks -> a -> capacity;
+	if (capacity == 2 && stacks -> a -> elements[0] > stacks -> a -> elements[1])
 	{
 		sa(stacks);
 	}
-	else if (stacks -> a -> capacity == 3)
+	else if (capacity == 3)
 	{
 		sort_three(stacks);
 	}
+	else if (capacity >= 4 && capacity <= 5)
+	{
+		sort_four_five(stacks);
+	}
 
 	return (0);
+}
+
+void	sort_four_five(t_stacks *s)
+{
+	while (s -> b -> top <= 1)
+	{
+		if (s -> a -> elements [0] == 0 || s -> a -> elements[0] == 1)
+			pb(s);
+		else
+			ra(s);
+	}
+	if (s -> b -> elements[0] == 0)
+		sb(s);
+	if (s -> a -> elements[2] != 4)
+	{
+		if (s -> a -> elements[0] == 4)
+			ra(s);
+		else
+			rra(s);
+	}
+	if (s-> a -> elements[0] > s -> a -> elements[1])
+		sa(s);
+	pa(s);
+	pa(s);
 }
 
 void	sort_three(t_stacks *s)

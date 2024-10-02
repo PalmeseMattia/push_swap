@@ -85,3 +85,53 @@ void	rb(t_stacks *stacks)
 	write(1, "rb\n", 3);
 }
 
+void	pa(t_stacks *stacks)
+{
+	int	tmp;
+	int	i;
+
+	if (stacks -> b -> top == 0 || stacks -> a -> top == stacks -> a -> capacity)
+		return ;
+	tmp = stacks -> b -> elements[0];
+	i = 0;
+	while(i < stacks -> b -> top - 1)
+	{
+		stacks -> b -> elements[i] = stacks -> b -> elements[i + 1]; 
+		i++;
+	}
+	stacks -> b -> top--;
+	i = (++stacks -> a -> top) - 1;
+	while(i > 0)
+	{
+		stacks -> a -> elements[i] = stacks -> a -> elements[i - 1];
+		i--;
+	}
+	stacks -> a -> elements[0] = tmp; 
+	write(1, "pa\n", 3);
+}
+
+
+void	pb(t_stacks *stacks)
+{
+	int	tmp;
+	int	i;
+
+	if (stacks -> a -> top == 0 || stacks -> b -> top == stacks -> b -> capacity)
+		return ;
+	tmp = stacks -> a -> elements[0];
+	i = 0;
+	while(i < stacks -> a -> top - 1)
+	{
+		stacks -> a -> elements[i] = stacks -> a -> elements[i + 1]; 
+		i++;
+	}
+	stacks -> a -> top--;
+	i = (++stacks -> b -> top) - 1;
+	while(i > 0)
+	{
+		stacks -> b -> elements[i] = stacks -> b -> elements[i - 1];
+		i--;
+	}
+	stacks -> b -> elements[0] = tmp; 
+	write(1, "pb\n", 3);
+}

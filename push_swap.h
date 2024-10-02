@@ -23,8 +23,12 @@ void		ra(t_stacks *stacks);
 void		rra(t_stacks *stacks);
 void		rb(t_stacks *stacks);
 void		rrb(t_stacks *stacks);
+void		pa(t_stacks *stacks);
+void		pb(t_stacks *stacks);
 
 t_stacks	*new_stacks(int capacity);
 void		push(t_stacks *s, int num);
+
+void	sort_four_five(t_stacks *s);
 
 #endif
