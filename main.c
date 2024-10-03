@@ -74,29 +74,61 @@ int main(int argc, char **argv)
 		stacks -> a -> elements[i] = new_elements[i];
 		i++;
 	}
-	//Print array to be safe :)
-	for (int i = 0; i < stacks -> a -> capacity; i++)
-	{
-		ft_printf("%d\n", stacks -> a -> elements[i]);
-	}
-	ft_printf("TOP: %d\n", stacks -> a -> top);
 
 	//Sort 2 elements
 	int capacity = stacks -> a -> capacity;
 	if (capacity == 2 && stacks -> a -> elements[0] > stacks -> a -> elements[1])
-	{
 		sa(stacks);
-	}
 	else if (capacity == 3)
-	{
 		sort_three(stacks);
-	}
 	else if (capacity >= 4 && capacity <= 5)
-	{
 		sort_four_five(stacks);
-	}
+	else
+		radix_sort(stacks);
 
 	return (0);
+}
+
+void	radix_sort(t_stacks *s)
+{
+	int	j;
+	int	bit_size;
+	int	size;
+
+	bit_size = 0;
+	size = s -> a -> top;
+	while (size > 1 && ++bit_size)
+		size /= 2;
+	j = 0;
+	while (j <= bit_size)
+	{
+		size = s -> a -> top;
+		while (size-- && !is_sorted(s -> a -> elements, s -> a -> top))
+		{
+			if (((s -> a -> elements[0] >> j) & 1) == 0)
+				pb(s);
+			else
+				ra(s);
+		}
+		radix_sort_b(s, s -> b -> top, bit_size, j + 1);
+		j++;
+	}
+	while (s -> b -> top != 0)
+		pa(s);
+}
+
+void	radix_sort_b(t_stacks *s, int b_size, int bit_size, int j)
+{
+	while (b_size-- && j <= bit_size && !is_sorted(s -> a -> elements, s -> a -> top))
+	{
+		if (((s -> b -> elements[0] >> j) & 1) == 0)
+			rb(s);
+		else
+			pa(s);
+	}
+	if (is_sorted(s -> a -> elements, s -> a -> top))
+		while (s -> b -> top != 0)
+			pa(s);
 }
 
 void	sort_four_five(t_stacks *s)

@@ -30,5 +30,6 @@ t_stacks	*new_stacks(int capacity);
 void		push(t_stacks *s, int num);
 
 void	sort_four_five(t_stacks *s);
-
+void	radix_sort(t_stacks *s);
+void	radix_sort_b(t_stacks *s, int b_size, int bit_size, int j);
 #endif
