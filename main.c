@@ -6,7 +6,7 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:19:44 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/06 15:42:26 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:59:04 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -63,6 +63,7 @@ void	rank_elements(t_stacks *stacks)
 		stacks -> a -> elements[i] = new_elements[i];
 		i++;
 	}
+	free(new_elements);
 }
 
 int	main(int argc, char **argv)
@@ -84,5 +85,6 @@ int	main(int argc, char **argv)
 	}
 	rank_elements(stacks);
 	sort(stacks);
+	free_stacks(stacks);
 	return (0);
 }

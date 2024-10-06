@@ -6,7 +6,7 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:16:08 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/06 15:44:40 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:59:34 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -46,4 +46,5 @@ void		radix_sort_b(t_stacks *s, int b_size, int bit_size, int j);
 void		sort_three(t_stacks *s);
 void		sort(t_stacks *s);
 int			is_sorted(int *array, int size);
+void		free_stacks(t_stacks *stacks);
 #endif

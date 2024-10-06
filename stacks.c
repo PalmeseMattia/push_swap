@@ -6,7 +6,7 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 22:28:04 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/06 14:58:50 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:58:49 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -38,6 +38,18 @@ t_stacks	*new_stacks(int capacity)
 	result -> a -> top = 0;
 	result -> b -> top = 0;
 	return (result);
+}
+
+void	free_stacks(t_stacks *stacks)
+{
+	if (stacks)
+	{
+		free(stacks -> a -> elements);
+		free(stacks -> b -> elements);
+		free(stacks -> a);
+		free(stacks -> b);
+		free(stacks);
+	}
 }
 
 void	push(t_stacks *s, int num)
