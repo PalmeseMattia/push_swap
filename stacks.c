@@ -6,14 +6,16 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 22:28:04 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/03 22:28:07 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/06 14:58:50 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 t_stacks	*new_stacks(int capacity)
 {
-	t_stacks *result = (t_stacks *)malloc(sizeof(t_stacks));
+	t_stacks	*result;
+
+	result = (t_stacks *)malloc(sizeof(t_stacks));
 	if (!result)
 		return (NULL);
 	result -> a = (t_stack *)malloc(sizeof(t_stack));
