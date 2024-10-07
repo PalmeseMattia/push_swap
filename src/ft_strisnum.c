@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_strisnum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmese <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 10:38:18 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/01/25 10:38:37 by dpalmese         ###   ########.fr       */
+/*   Created: 2024/10/03 22:16:43 by dpalmese          #+#    #+#             */
+/*   Updated: 2024/10/07 17:30:46 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/push_swap.h"
 
-void	ft_strrev(char *str)
+int	ft_strisnum(char *str)
 {
-	int		i;
-	int		size;
-	char	tmp;
-
-	i = 0;
-	size = ft_strlen(str) - 1;
-	while (i < size)
+	while (*str)
 	{
-		tmp = str[i];
-		str[i] = str[size];
-		str[size] = tmp;
-		i++;
-		size--;
+		if (!ft_isdigit(*str) && *str != '-' && *str != '+')
+			return (0);
+		str++;
 	}
+	return (1);
 }

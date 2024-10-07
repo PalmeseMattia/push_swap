@@ -1,18 +1,24 @@
 OUT = push_swap
-SRCS = main.c ft_strisnum.c moves.c moves_2.c stacks.c sort.c
+SRCS = src/main.c src/ft_strisnum.c src/moves.c \
+	   src/moves_2.c src/stacks.c src/sort.c \
+	   src/utils.c
+
 LIBFT = libft.a
+LIBFT_DIR = ./libs/libft
+
+FLAGS = -Wall -Wextra -Werror -g
 
 all : $(LIBFT)
-	gcc $(SRCS) -lft -Llibft -g -o push_swap
+	gcc $(SRCS) -lft -L$(LIBFT_DIR) $(FLAGS) -o push_swap
 
 $(LIBFT):
-	make -C ./libft
+	make -C $(LIBFT_DIR)
 
 libclean:
-	make clean -C ./libft
+	make clean -C $(LIBFT_DIR)
 
 libfclean:
-	make fclean -C ./libft
+	make fclean -C $(LIBFT_DIR)
 
 clean: libclean
 	rm -rf *.o

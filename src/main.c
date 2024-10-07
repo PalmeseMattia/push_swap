@@ -6,21 +6,10 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:19:44 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/07 13:29:07 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:40:45 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
-
-int	is_sorted(int *array, int size)
-{
-	while (size > 0)
-	{
-		if (array[size - 1] < array[size - 2])
-			return (0);
-		size--;
-	}
-	return (1);
-}
+#include "../include/push_swap.h"
 
 void	check_input(char **args, int size)
 {
@@ -66,16 +55,6 @@ void	rank_elements(t_stacks *stacks)
 	free(new_elements);
 }
 
-int	get_array_size(char **array)
-{
-	int	i;
-
-	i = 0;
-	while(array[i])
-		i++;
-	return (i);
-}
-
 void	push_elements(t_stacks *stacks, char **elements)
 {
 	int	i;
@@ -108,7 +87,7 @@ t_stacks	*parse_args(int argc, char **argv)
 		push_elements(stacks, argv + 1);
 	}
 	if (args)
-		free(args);
+		free_array(args);
 	return (stacks);
 }
 
@@ -122,7 +101,10 @@ int	main(int argc, char **argv)
 	}
 	stacks = parse_args(argc, argv);
 	rank_elements(stacks);
-	sort(stacks);
+	if (!contains_duplicates(stacks))
+		sort(stacks);
+	else
+		ft_printf("Error: There are duplicates in the values provided\n");
 	free_stacks(stacks);
 	return (0);
 }

@@ -6,10 +6,10 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 22:23:52 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/03 22:27:17 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:31:05 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	rb(t_stacks *stacks)
 {

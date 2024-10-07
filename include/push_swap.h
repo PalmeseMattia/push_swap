@@ -6,14 +6,14 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:16:08 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/06 16:59:34 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:41:06 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include "libft/libft.h"
+# include "../libs/libft/libft.h"
 
 typedef struct s_stack
 {
@@ -47,4 +47,7 @@ void		sort_three(t_stacks *s);
 void		sort(t_stacks *s);
 int			is_sorted(int *array, int size);
 void		free_stacks(t_stacks *stacks);
+int			contains_duplicates(t_stacks *stacks);
+int			get_array_size(char **array);
+void		free_array(char **array);
 #endif

@@ -6,10 +6,10 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 22:28:04 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/06 16:58:49 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:31:23 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 t_stacks	*new_stacks(int capacity)
 {
