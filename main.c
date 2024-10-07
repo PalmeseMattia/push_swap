@@ -6,7 +6,7 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:19:44 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/06 16:59:04 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:29:07 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -22,14 +22,14 @@ int	is_sorted(int *array, int size)
 	return (1);
 }
 
-void	check_input(int argc, char **argv)
+void	check_input(char **args, int size)
 {
 	int	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < size)
 	{
-		if (!ft_strisnum(argv[i]))
+		if (!ft_strisnum(args[i]))
 		{
 			ft_printf("Error: Please provide strictly numerical values\n");
 			exit(EXIT_FAILURE);
@@ -66,23 +66,61 @@ void	rank_elements(t_stacks *stacks)
 	free(new_elements);
 }
 
+int	get_array_size(char **array)
+{
+	int	i;
+
+	i = 0;
+	while(array[i])
+		i++;
+	return (i);
+}
+
+void	push_elements(t_stacks *stacks, char **elements)
+{
+	int	i;
+
+	i = 0;
+	while (i < stacks -> a -> capacity)
+	{
+		push(stacks, ft_atoi(elements[i]));
+		i++;
+	}
+}
+
+t_stacks	*parse_args(int argc, char **argv)
+{
+	char		**args;
+	t_stacks	*stacks;
+
+	args = NULL;
+	if (argc == 2)
+	{
+		args = ft_split(argv[1], ' ');
+		check_input(args, get_array_size(args));
+		stacks = new_stacks(get_array_size(args));
+		push_elements(stacks, args);
+	}
+	else
+	{
+		check_input(argv + 1, argc - 1);
+		stacks = new_stacks(argc - 1);
+		push_elements(stacks, argv + 1);
+	}
+	if (args)
+		free(args);
+	return (stacks);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stacks	*stacks;
-	int			i;
 
 	if (argc < 2)
 	{
 		exit(EXIT_SUCCESS);
 	}
-	check_input(argc, argv);
-	stacks = new_stacks(argc - 1);
-	i = 1;
-	while (i < argc)
-	{
-		push(stacks, ft_atoi(argv[i]));
-		i++;
-	}
+	stacks = parse_args(argc, argv);
 	rank_elements(stacks);
 	sort(stacks);
 	free_stacks(stacks);
