@@ -6,7 +6,7 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:19:44 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/11/24 16:12:03 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:37:04 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -21,6 +21,11 @@ void	check_input(char **args, int size)
 		if (!ft_strisnum(args[i]))
 		{
 			ft_printf("Error: Please provide strictly numerical values\n");
+			exit(EXIT_FAILURE);
+		}
+		else if (ft_strtol(args[i]) > INT_MAX)
+		{
+			ft_printf("Error: Please provide values under the max integer\n");
 			exit(EXIT_FAILURE);
 		}
 		i++;
