@@ -6,7 +6,7 @@
 /*   By: dpalmese <dpalmese@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:19:44 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/10/07 17:40:45 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:12:03 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -102,7 +102,10 @@ int	main(int argc, char **argv)
 	stacks = parse_args(argc, argv);
 	rank_elements(stacks);
 	if (!contains_duplicates(stacks))
-		sort(stacks);
+	{
+		if (!is_sorted(stacks->a->elements, stacks->a->capacity))
+			sort(stacks);
+	}
 	else
 		ft_printf("Error: There are duplicates in the values provided\n");
 	free_stacks(stacks);
