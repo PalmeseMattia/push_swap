@@ -1,18 +1,17 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strtol.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmese <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 10:23:22 by dpalmese          #+#    #+#             */
-/*   Updated: 2024/01/08 18:24:37 by dpalmese         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:57:08 by dpalmese         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-long ft_strtol(const char *nptr)
+long	ft_strtol(const char *nptr)
 {
 	long	result;
 	long	sign;
